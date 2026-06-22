@@ -85,8 +85,3 @@ python run_training_wo_attention.py \
     --train_ppo \
     --checkpoint "path/to/checkpoint_sft"
 ```
-
-
-
-
-```
