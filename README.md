@@ -19,6 +19,8 @@ Put them into the ``data`` folder.
 Checkpoint path can be downloaded [here](https://drive.google.com/drive/folders/1uA2EZ2RogMFQFzzIVf2MPusmTKAAwaF0?usp=sharing). 
 
 ## 4.Running AutoEdit
+** 基于奖励函数的改进方式，代码中已写明，为了与原始版本做区分，原始版本未删除而是采用备注方式 **
+
 **DDPM-Inversion**: Search for inversion timestep:
 
 ```bash
