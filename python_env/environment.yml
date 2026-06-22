@@ -191,5 +191,4 @@ dependencies:
       - yapf==0.43.0
       - yarl==1.20.1
       - zipp==3.21.0
-#prefix: /home/csgrad/haichaup/anaconda3/envs/p2p
 prefix: /home/hemian/anaconda3/envs/AutoEdit
