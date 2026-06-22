@@ -22,6 +22,9 @@ Checkpoint path can be downloaded [here](https://drive.google.com/drive/folders/
 **DDPM-Inversion**: Search for inversion timestep:
 
 ```bash
+#可以直接执行
+python scripts/sun_training_ddpm_inversion.sh
+#或者终端执行
 python run_training_wo_attention.py \
     --checkpoint "exp/ddpm_ppo/checkpoint.ckpt" \
     --input_image_path "assets/cake.jpg" \
@@ -33,6 +36,9 @@ python run_training_wo_attention.py \
 **P2P**: Conduct the DDPM Inversion and cross-attention ratio search:
 
 ```bash
+#可以直接执行
+python scripts/run_training_p2p.sh
+#或者终端执行
 python run_training.py \
   --checkpoint "exp/ddpm_ppo/checkpoint.ckpt" \
   --input_image_path "assets/cake.jpg" \
@@ -43,6 +49,9 @@ python run_training.py \
 
 **Null-text**: Null-text inversion and searching for inversion timestep
 ```bash
+#可以直接执行
+python scripts/run_null_text.sh
+#或者终端执行
 python null_text_inversion.py \
   --checkpoint_path "exp/null_text_ppo/checkpoint.ckpt" \
   --input_image_path "assets/cake.jpg" \
@@ -53,6 +62,9 @@ python null_text_inversion.py \
 
 **Adaptive CFG**:
 ```bash
+#可以直接执行
+python scripts/run_ddpm_cfg.sh
+#或者终端执行
 python run_training_cfg.py \
     --checkpoint "exp/cfg_ppo/checkpoint.ckpt" \
     --input_image_path "assets/cake.jpg" \
@@ -68,6 +80,9 @@ Training AutoEdit for DDPM inversion:
 
 **Stage 1**:SFT training
 ```bash
+#可以直接执行
+python scripts/run_training_ddpm_sft.sh
+#或者终端执行
 python run_training_wo_attention.py \
     --exp_name "exp/ddpm_ppo_sft" \
     --num_epochs 5 \
@@ -79,6 +94,9 @@ python run_training_wo_attention.py \
 
 **Stage 2**: PPO training
 ```bash
+#可以直接执行
+python scripts/run_training_ddpm_ppo.sh
+#或者终端执行
 python run_training_wo_attention.py \
     --exp_name "exp/ddpm_ppo_sft" \
     --num_epochs 15 \
