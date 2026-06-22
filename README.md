@@ -5,6 +5,7 @@ Please refer to the environment installation in ``python_env/environment.yml``:
 ```bash
 conda env export -n p2p > python_env/environment.yml
 ```
+记录部分bash过程-``log.txt ``
 
 # 2.DataSets
 Put them into the ``data`` folder.
