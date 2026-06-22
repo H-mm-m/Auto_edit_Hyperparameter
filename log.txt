@@ -1,0 +1,258 @@
+hemiao@yzhang-PR4908R:~$ conda activate AutoEdit
+(AutoEdit) hemiao@yzhang-PR4908R:~$ bash /home/hemiao/AutoEdit/AutoEdit-main/scripts/run_training_ddpm_inversion.sh
+/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /openai/clip-vit-large-patch14/resolve/main/config.json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/hemiao/AutoEdit/AutoEdit-main/run_training_wo_attention.py", line 106, in <module>
+    model_inference(args)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/hemiao/AutoEdit/AutoEdit-main/run_training_wo_attention.py", line 84, in model_inference
+    ddpm_inv = Prompt2PromptDDPM(
+  File "/home/hemiao/AutoEdit/AutoEdit-main/ddpm_p2p_wo_attention.py", line 54, in __init__
+    self.reward_fn = RewardFunction(alpha1=alpha1, alpha2=alpha2, device="cpu")
+  File "/home/hemiao/AutoEdit/AutoEdit-main/reward.py", line 12, in __init__
+    self.clip_metric_calculator = CLIPScore(model_name_or_path="openai/clip-vit-large-patch14").to(device)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torchmetrics/multimodal/clip_score.py", line 193, in __init__
+    self.model, self.processor = _get_clip_model_and_processor(model_name_or_path)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torchmetrics/functional/multimodal/clip_score.py", line 226, in _get_clip_model_and_processor
+    model = _CLIPModel.from_pretrained(model_name_or_path)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2926, in from_pretrained
+    resolved_config_file = cached_file(
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/transformers/utils/hub.py", line 385, in cached_file
+    resolved_file = hf_hub_download(
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/utils/_deprecation.py", line 101, in inner_f
+    return f(*args, **kwargs)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1232, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1295, in _hf_hub_download_to_cache_dir
+    (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1746, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1666, in get_hf_file_metadata
+    r = _request_wrapper(
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 364, in _request_wrapper
+    response = _request_wrapper(
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 387, in _request_wrapper
+    response = get_session().request(method=method, url=url, **params)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 93, in send
+    return super().send(request, *args, **kwargs)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/requests/adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /openai/clip-vit-large-patch14/resolve/main/config.json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))"), '(Request ID: 96c2467d-7970-4f0e-899d-c731c5db708b)')
+(AutoEdit) hemiao@yzhang-PR4908R:~$ weget https://github.com/chaupham1709/AutoEdit.git
+
+Command 'weget' not found, did you mean:
+
+  command 'wget' from deb wget (1.20.3-1ubuntu2.1)
+  command 'wmget' from deb wmget (0.6.1-1build1)
+
+Try: apt install <deb name>
+
+(AutoEdit) hemiao@yzhang-PR4908R:~$ wget https://github.com/chaupham1709/AutoEdit.git
+--2025-12-09 22:18:54--  https://github.com/chaupham1709/AutoEdit.git
+Connecting to 172.31.136.41:7897... connected.
+Proxy request sent, awaiting response... 301 Moved Permanently
+Location: https://github.com/chaupham1709/AutoEdit [following]
+--2025-12-09 22:18:56--  https://github.com/chaupham1709/AutoEdit
+Reusing existing connection to github.com:443.
+Proxy request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘AutoEdit.git.2’
+
+AutoEdit.git.2                     [      <=>                                            ] 304.75K   260KB/s    in 1.2s    
+
+2025-12-09 22:18:58 (260 KB/s) - ‘AutoEdit.git.2’ saved [312059]
+
+(AutoEdit) hemiao@yzhang-PR4908R:~$ env | grep -i proxy
+https_proxy=http://172.31.136.41:7897/
+http_proxy=http://172.31.136.41:7897/
+(AutoEdit) hemiao@yzhang-PR4908R:~$ env | grep -i proxy
+https_proxy=http://172.31.136.41:7897/
+http_proxy=http://172.31.136.41:7897/
+(AutoEdit) hemiao@yzhang-PR4908R:~$ source ~/.bashrc
+hemiao@yzhang-PR4908R:~$ env | grep -i proxy
+https_proxy=http://172.29.247.63:7897/
+http_proxy=http://172.29.247.63:7897/
+hemiao@yzhang-PR4908R:~$ bash /home/hemiao/AutoEdit/AutoEdit-main/scripts/run_training_ddpm_inversion.sh
+/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+safety_checker/pytorch_model.fp16.safetensors not found
+Fetching 21 files: 100%|████████████████████████████████████████████████████████████████| 21/21 [00:00<00:00, 163414.44it/s]
+The config attributes {'scaling_factor': 0.18215} were passed to AutoencoderKL, but are not expected and will be ignored. Please verify your config.json configuration file.
+/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Traceback (most recent call last):
+  File "/home/hemiao/AutoEdit/AutoEdit-main/run_training_wo_attention.py", line 106, in <module>
+    model_inference(args)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/hemiao/AutoEdit/AutoEdit-main/run_training_wo_attention.py", line 91, in model_inference
+    ddpm_inv.init_model()
+  File "/home/hemiao/AutoEdit/AutoEdit-main/ddpm_p2p_wo_attention.py", line 61, in init_model
+    self.pipeline = StableDiffusionPipeline.from_pretrained(model_id).to(self.device)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/diffusers/pipelines/pipeline_utils.py", line 272, in to
+    module.to(torch_device)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2595, in to
+    return super().to(*args, **kwargs)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1160, in to
+    return self._apply(convert)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  [Previous line repeated 4 more times]
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/nn/modules/module.py", line 833, in _apply
+    param_applied = fn(param)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1158, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 MiB. GPU 0 has a total capacty of 23.69 GiB of which 6.12 MiB is free. Process 1864386 has 22.10 GiB memory in use. Including non-PyTorch memory, this process has 1.57 GiB memory in use. Of the allocated memory 1.29 GiB is allocated by PyTorch, and 35.56 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+hemiao@yzhang-PR4908R:~$ nvidia-smi
+Tue Dec  9 22:47:42 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce RTX 3090        Off | 00000000:01:00.0 Off |                  N/A |
+| 72%   79C    P2             333W / 350W |  22642MiB / 24576MiB |     79%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA GeForce RTX 3090        Off | 00000000:25:00.0 Off |                  N/A |
+| 73%   74C    P2             329W / 350W |  22648MiB / 24576MiB |     94%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   2  NVIDIA GeForce RTX 3090        Off | 00000000:41:00.0 Off |                  N/A |
+| 30%   31C    P8              32W / 350W |     10MiB / 24576MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   3  NVIDIA GeForce RTX 3090        Off | 00000000:61:00.0 Off |                  N/A |
+| 30%   30C    P8              23W / 350W |     10MiB / 24576MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   4  NVIDIA GeForce RTX 3090        Off | 00000000:81:00.0 Off |                  N/A |
+| 30%   31C    P8              25W / 350W |     10MiB / 24576MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   5  NVIDIA GeForce RTX 3090        Off | 00000000:A1:00.0 Off |                  N/A |
+| 30%   31C    P8              24W / 350W |     10MiB / 24576MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   6  NVIDIA GeForce RTX 3090        Off | 00000000:C1:00.0 Off |                  N/A |
+| 31%   31C    P8              27W / 350W |     10MiB / 24576MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   7  NVIDIA GeForce RTX 3090        Off | 00000000:E1:00.0 Off |                  N/A |
+| 31%   31C    P8              21W / 350W |     10MiB / 24576MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    0   N/A  N/A   1864386      C   ...owen/miniconda3/envs/PFT/bin/python    22626MiB |
+|    1   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    1   N/A  N/A   1864387      C   ...owen/miniconda3/envs/PFT/bin/python    22632MiB |
+|    2   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    3   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    4   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    5   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    6   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    7   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
++---------------------------------------------------------------------------------------+
+hemiao@yzhang-PR4908R:~$ nvidia-smi | grep -A 10 "Processes"
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    0   N/A  N/A   1864386      C   ...owen/miniconda3/envs/PFT/bin/python    22626MiB |
+|    1   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    1   N/A  N/A   1864387      C   ...owen/miniconda3/envs/PFT/bin/python    22632MiB |
+|    2   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    3   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+|    4   N/A  N/A      4130      G   /usr/lib/xorg/Xorg                            4MiB |
+^Z^Z^Z^Z    
+[1]+  Stopped                 nvidia-smi | grep --color=auto -A 10 "Processes"
+hemiao@yzhang-PR4908R:~$ export CUDA_VISIBLE_DEVICES=3
+hemiao@yzhang-PR4908R:~$ bash /home/hemiao/AutoEdit/AutoEdit-main/scripts/run_training_ddpm_inversion.sh
+/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+safety_checker/pytorch_model.fp16.safetensors not found
+Fetching 21 files: 100%|█████████████████████████████████████████████████████████████████████████| 21/21 [00:00<00:00, 176160.77it/s]
+/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+The config attributes {'scaling_factor': 0.18215} were passed to AutoencoderKL, but are not expected and will be ignored. Please verify your config.json configuration file.
+^Z
+[2]+  Stopped                 bash /home/hemiao/AutoEdit/AutoEdit-main/scripts/run_training_ddpm_inversion.sh
+hemiao@yzhang-PR4908R:~$ conda activate AutoEdit
+(AutoEdit) hemiao@yzhang-PR4908R:~$ export CUDA_VISIBLE_DEVICES=3
+(AutoEdit) hemiao@yzhang-PR4908R:~$ bash /home/hemiao/AutoEdit/AutoEdit-main/scripts/run_training_ddpm_inversion.sh
+/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+text_encoder/pytorch_model.fp16.safetensors not found
+Fetching 21 files: 100%|██████████████████████████████████████████████████████████████████████████| 21/21 [00:00<00:00, 42305.66it/s]
+/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+The config attributes {'scaling_factor': 0.18215} were passed to AutoencoderKL, but are not expected and will be ignored. Please verify your config.json configuration file.
+diffusion_pytorch_model.safetensors:  87%|███████████████████████████████████████████████       | 3.00G/3.44G [20:55<02:51, 2.57MB/s]Error while downloading from https://cas-bridge.xethub.hf.co/xet-bridge-us/6300e0f58a4db6e9052953a8/d004b6a8164e025a5f7d6bd9f22b552ca631de4c032dcc3758ab4bd3abc14547?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20251209%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251209T150449Z&X-Amz-Expires=3600&X-Amz-Signature=761ff334cfb93f5d41b2a92315310b7a39e9d30ead3411f0e501fdfafc162fca&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27diffusion_pytorch_model.safetensors%3B+filename%3D%22diffusion_pytorch_model.safetensors%22%3B&x-id=GetObject&Expires=1765296289&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc2NTI5NjI4OX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82MzAwZTBmNThhNGRiNmU5MDUyOTUzYTgvZDAwNGI2YTgxNjRlMDI1YTVmN2Q2YmQ5ZjIyYjU1MmNhNjMxZGU0YzAzMmRjYzM3NThhYjRiZDNhYmMxNDU0NyoifV19&Signature=ZYmT2Ev9NK-A2iEvxzcdwpjcQrjyFBRrCgWzU-CNUfLjncotsQavvGaRsCrJxk0M%7EPEDJSBNmadFTAcufjwpheWpbcRWjthAIe7F2OYlSa%7EGV4HY-GYYfDM4rnDRsyDOvBWnTTCxNRDuAe0B0T7oNaikxaUmmeA4NL0yfck9GZ9VDXFm%7E2Lqn6YlWsb3zmXo1EpqUjdQrSF5vb7P5UeSUMk2Twld6myn%7Eq-NTKSG%7Em-5056suncmyadEfw5OnGs0hln7w-7X7OrILhWc%7E2EWD1dtCtnThJELt6jYzlYhj2ur27Rb85%7EBgJyzgZP0L69JWv5XEczynobDQArGJF2HhQ__&Key-Pair-Id=K2L8F4GPSG1IFC: HTTPSConnectionPool(host='cas-bridge.xethub.hf.co', port=443): Read timed out.
+Trying to resume download...
+diffusion_pytorch_model.safetensors: 100%|██████████████████████████████████████████████████████| 3.44G/3.44G [03:00<00:00, 2.43MB/s]
+diffusion_pytorch_model.safetensors:  87%|███████████████████████████████████████████████       | 3.00G/3.44G [24:00<03:31, 2.08MB/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:10<00:00,  4.69it/s]
+Traceback (most recent call last):
+  File "/home/hemiao/AutoEdit/AutoEdit-main/run_training_wo_attention.py", line 106, in <module>
+    model_inference(args)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/hemiao/AutoEdit/AutoEdit-main/run_training_wo_attention.py", line 97, in model_inference
+    img.save(args.save_edit_path)
+  File "/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/PIL/Image.py", line 2591, in save
+    fp = builtins.open(filename, "w+b")
+FileNotFoundError: [Errno 2] No such file or directory: '/home/hemiao/AutoEdit/AutoEdit-main/output/edit_cake.png'
+(AutoEdit) hemiao@yzhang-PR4908R:~$ bash /home/hemiao/AutoEdit/AutoEdit-main/scripts/run_training_ddpm_inversion.sh
+^Z
+[3]+  Stopped                 bash /home/hemiao/AutoEdit/AutoEdit-main/scripts/run_training_ddpm_inversion.sh
+(AutoEdit) hemiao@yzhang-PR4908R:~$ export CUDA_VISIBLE_DEVICES=3
+(AutoEdit) hemiao@yzhang-PR4908R:~$ bash /home/hemiao/AutoEdit/AutoEdit-main/scripts/run_training_ddpm_inversion.sh
+/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+text_encoder/pytorch_model.fp16.safetensors not found
+Fetching 21 files: 100%|█████████████████████████████████████████████████████████████████████████| 21/21 [00:00<00:00, 104732.92it/s]
+/home/hemiao/anaconda3/envs/AutoEdit/lib/python3.10/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+The config attributes {'scaling_factor': 0.18215} were passed to AutoencoderKL, but are not expected and will be ignored. Please verify your config.json configuration file.
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:10<00:00,  4.70it/s]
+已创建目录: /home/hemiao/AutoEdit/AutoEdit-main/output
+图像已保存到: /home/hemiao/AutoEdit/AutoEdit-main/output/edit_cake.png
+(AutoEdit) hemiao@yzhang-PR4908R:~$ 
