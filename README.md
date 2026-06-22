@@ -1,45 +1,23 @@
-# [NeurIPS 25] Official implementation of AutoEdit: Automatic Hyperparameter Tuning for Image Editing
+## 1.Installation
 
-This is the official implementation of AutoEdit: Automatic Hyperparameter Tuning for Image Editing (NeurIPS 2025). The paper can be found [here](https://arxiv.org/abs/2509.15031):
-
-![Method](figures/method.png)
-
-![Automatic tuning the hyperparameters with AutoEdit](figures/image.png)
-
-### To-do list
-
-- [x] Release inference code.
-- [x] Release training code.
-
-## Installation
-
-For editing methods running with SD 1.4, please refer to the environment installation in ``python_env/environment.yml``:
+Please refer to the environment installation in ``python_env/environment.yml``:
 
 ```bash
 conda env export -n p2p > python_env/environment.yml
 ```
 
-or you can install the environment by pip on your own. Note the version of some important libraries:
+# 2.DataSets
+Put them into the ``data`` folder.
 
-```
-accelerate==1.4.0
-diffusers==0.12.0
-torch==2.1.2
-transformers==4.37.2
-```
+训练数据集 EditBench： [here](https://drive.google.com/file/d/1vI95rLwleXZs_2lUxulI-f06Ngr8XcL1/view?usp=sharing).
 
-Note that the version of diffusers is low with the SD 1.4 model, I will try to update the code to make it compatible with recent diffusers version.
+测试数据集 PieBench：  [here](https://github.com/cure-lab/PnPInversion). 需要填写表单申请
 
-Stay tuned for SDXL and DiT model.
+## 3.Checkpoint
 
-## Checkpoint
+Checkpoint path can be downloaded [here](https://drive.google.com/drive/folders/1uA2EZ2RogMFQFzzIVf2MPusmTKAAwaF0?usp=sharing). 
 
-Checkpoint path can be downloaded [here](https://drive.google.com/drive/folders/1uA2EZ2RogMFQFzzIVf2MPusmTKAAwaF0?usp=sharing). Each folder will be the checkpoint of AutoEdit with the corresponding method (see the Running AutoEdit section).
-
-## Running AutoEdit
-
-You can run AutoEdit by following these scripts:
-
+## 4.Running AutoEdit
 **DDPM-Inversion**: Search for inversion timestep:
 
 ```bash
@@ -82,11 +60,8 @@ python run_training_cfg.py \
     --save_edit_path "output/edit_cake.png"
 ```
 
-All scripts are available at ``scripts`` folder.
+## 5.Training AutoEdit
 
-## Training AutoEdit
-
-Prepare the dataset: You can find the dataset [here](https://drive.google.com/file/d/1vI95rLwleXZs_2lUxulI-f06Ngr8XcL1/view?usp=sharing). Put it into the ``data`` folder.
 
 Training AutoEdit for DDPM inversion:
 
@@ -111,15 +86,7 @@ python run_training_wo_attention.py \
     --checkpoint "path/to/checkpoint_sft"
 ```
 
-## Citation
 
-If you find our work interesting, please considering cite:
 
-```
-@article{pham2025autoedit,
-  title={AutoEdit: Automatic Hyperparameter Tuning for Image Editing},
-  author={Pham, Chau and Dao, Quan and Bhosale, Mahesh and Tian, Yunjie and Metaxas, Dimitris and Doermann, David},
-  journal={arXiv preprint arXiv:2509.15031},
-  year={2025}
-}
+
 ```
